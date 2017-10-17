@@ -1,0 +1,7 @@
+[package]
+name = "demo-rust-html-parser"
+version = "1.0.0"
+authors = ["Joel Parker Henderson <joel@joelparkerhenderson.com>"]
+
+[dependencies]
+html5ever = "*"
