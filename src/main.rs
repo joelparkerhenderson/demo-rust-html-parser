@@ -49,52 +49,52 @@ mod tests {
     }
 
     #[test]
-	fn test_parse_html_string_with_blank() {
-		assert_eq!(
-			"#Document\n  <html>\n    <head>\n    <body>\n",
-			parse_html_string("")
-		);
-	}
+    fn test_parse_html_string_with_blank() {
+        assert_eq!(
+            "#Document\n  <html>\n    <head>\n    <body>\n",
+            parse_html_string("")
+        );
+    }
 
     #[test]
-	fn test_parse_html_string_with_single_tag() {
-		assert_eq!(
-			"#Document\n  <html>\n    <head>\n    <body>\n      <foo>\n",
-			parse_html_string("<foo/>")
-		);
-	}
+    fn test_parse_html_string_with_single_tag() {
+        assert_eq!(
+            "#Document\n  <html>\n    <head>\n    <body>\n      <foo>\n",
+            parse_html_string("<foo/>")
+        );
+    }
 
     #[test]
-	fn test_parse_html_string_with_single_tag_with_attribute() {
-		assert_eq!(
-			"#Document\n  <html>\n    <head>\n    <body>\n      <foo goo=\"hoo\">\n", 
-			parse_html_string("<foo goo=\"hoo\"/>")
-		);
-	}
+    fn test_parse_html_string_with_single_tag_with_attribute() {
+        assert_eq!(
+            "#Document\n  <html>\n    <head>\n    <body>\n      <foo goo=\"hoo\">\n", 
+            parse_html_string("<foo goo=\"hoo\"/>")
+        );
+    }
 
     #[test]
-	fn test_parse_html_string_with_double_tag() {
-		assert_eq!(
-			"#Document\n  <html>\n    <head>\n    <body>\n      <foo>\n",
-			parse_html_string("<foo></foo>")
-		);
-	}
+    fn test_parse_html_string_with_double_tag() {
+        assert_eq!(
+            "#Document\n  <html>\n    <head>\n    <body>\n      <foo>\n",
+            parse_html_string("<foo></foo>")
+        );
+    }
 
     #[test]
-	fn test_parse_html_string_with_text() {
-		assert_eq!(
-			"#Document\n  <html>\n    <head>\n    <body>\n      #text:foo\n",
-			parse_html_string("foo")
-		);
-	}
+    fn test_parse_html_string_with_text() {
+        assert_eq!(
+            "#Document\n  <html>\n    <head>\n    <body>\n      #text:foo\n",
+            parse_html_string("foo")
+        );
+    }
 
-	#[test]
-	fn test_parse_html_string_with_comment() {
-		assert_eq!(
-			"#Document\n  <!--  foo  -->\n  <html>\n    <head>\n    <body>\n", 
-			parse_html_string("<!-- foo -->")
-		);
-	}
+    #[test]
+    fn test_parse_html_string_with_comment() {
+        assert_eq!(
+            "#Document\n  <!--  foo  -->\n  <html>\n    <head>\n    <body>\n", 
+            parse_html_string("<!-- foo -->")
+        );
+    }
 
 }
 
@@ -154,7 +154,7 @@ fn node_to_string(node: &Handle) -> String {
         }
 
         NodeData::ProcessingInstruction { .. } => unreachable!()
-    }	
+    }    
 }
 
 fn walk(node: Handle, indent_size: usize) -> String {
@@ -183,7 +183,7 @@ pub fn parse_html_string(s: &str) -> String {
 }
 
 fn parse_html_path(path: &Path) -> String {
-	println!("parse_html_path path:{:?}", path);
+    println!("parse_html_path path:{:?}", path);
     let mut file = File::open(path)
     .expect("file open failed");
     let mut s = String::new();
@@ -193,7 +193,7 @@ fn parse_html_path(path: &Path) -> String {
 }
 
 fn main() {
-	let mut args = std::env::args(); args.next();
+    let mut args = std::env::args(); args.next();
     let arg: String = args.next().expect("Missing arg");
     let html_path = Path::new(&arg);
     println!("{}",parse_html_path(html_path));
